@@ -74,8 +74,10 @@ function configure_dce() {
   #statements
   # $user=admin
   # $Password=admin
+  sleep 10
   curl -X POST -H "Content-Type: application/json" -d '{"Name": "admin","Email": "admin2@cc.com",  "IsAdmin": true,"Password": "admin"}' "http://${1}/api/v1/accounts"
-  curl -H "Content-Type: application/json" -X PATCH http://${1}/api/settings/auth -d '{"Method": "managed"}'
+  sleep 5
+  curl -H "Content-Type: application/json" -d '{"Method": "managed"}' -X PATCH http://${1}/api/settings/auth
 }
 
 init_config
