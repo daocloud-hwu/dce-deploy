@@ -1,0 +1,15 @@
+#!/usr/bin/expect -f
+set host [lindex $argv 0]
+set user [lindex $argv 1]
+set password [lindex $argv 2]
+set timeout 20
+spawn ssh-copy-id -i ./tmp/dce.rsa.pub -f $user@$host
+match_max 100
+expect {
+"(yes/no)" { send "yes\r"; exp_continue }
+"password:" { send "$password\r"; exp_continue }
+}
+
+#send "curl -sSL http://yoooooou.com/setup-dce.sh | sh\n"
+
+#interact
