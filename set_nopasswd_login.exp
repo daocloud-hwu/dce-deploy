@@ -3,7 +3,7 @@ set host [lindex $argv 0]
 set user [lindex $argv 1]
 set password [lindex $argv 2]
 set timeout 20
-spawn ssh-copy-id -i ./tmp/dce.rsa.pub -f $user@$host
+spawn ssh-copy-id -i ./tmp/dce.rsa.pub $user@$host
 match_max 100
 expect {
 "(yes/no)" { send "yes\r"; exp_continue }

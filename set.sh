@@ -34,6 +34,8 @@ function load_cluster_config_file() {
   else
       echo "rsa file has been generated"
   fi
+
+  chmod 600 ./tmp/dce.rsa
 }
 function init_config() {
   #statements
@@ -72,8 +74,8 @@ function configure_dce() {
   #statements
   # $user=admin
   # $Password=admin
-  curl -X POST -H "Content-Type: application/json" -d '{"Name": "admin","Email": "admin2@cc.com",  "IsAdmin": true,"Password": "admin"}' "http://$host/api/v1/accounts"
-  curl -H "Content-Type: application/json" -X PATCH http://$host/api/settings/auth -d '{"Method": "managed"}'
+  curl -X POST -H "Content-Type: application/json" -d '{"Name": "admin","Email": "admin2@cc.com",  "IsAdmin": true,"Password": "admin"}' "http://${1}/api/v1/accounts"
+  curl -H "Content-Type: application/json" -X PATCH http://${1}/api/settings/auth -d '{"Method": "managed"}'
 }
 
 init_config
