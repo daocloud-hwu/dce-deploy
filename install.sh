@@ -6,3 +6,4 @@ set -e
 
 service docker restart
 bash -c "$(docker run --rm -i daocloud.io/daocloud/dce${version} install -q | sed "s/-it/-i/g")"
+service docker restart
