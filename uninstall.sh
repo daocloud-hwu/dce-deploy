@@ -5,4 +5,7 @@ docker ps -a | awk '{print $1}' | grep -v "CONTAINER" | xargs docker rm -vf > /d
 
 rm -rf /var/local/dce
 rm -rf /etc/daocloud/dce
-rm -rf /etc/docker/*
+
+if [ -f /etc/docker/daemon.json.bak ]; then
+  cat /etc/docker/daemon.json.bak > /etc/docker/daemon.json
+fi
